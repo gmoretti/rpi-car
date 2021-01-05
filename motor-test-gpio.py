@@ -14,4 +14,11 @@ print('going backward')
 motor1.backward()
 motor2.backward()
 
-	
+time.sleep(2)
+
+print('stopping')
+
+motor1.stop()
+motor2.stop()
+
+time.sleep(2)
