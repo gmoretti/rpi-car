@@ -6,17 +6,17 @@ motor1 = Motor(27, 17)
 motor2 = Motor(24, 23)
 
 def main():
-    pygame.init()
-    screen = pygame.display.set_mode((640, 480))
-    pygame.key.set_repeat(200000)
+	pygame.init()
+	screen = pygame.display.set_mode((640, 480))
+	pygame.key.set_repeat(200000)
 
-    clock = pygame.time.Clock()
+	clock = pygame.time.Clock()
 
     
     
-    state = 'stopped'
+	state = 'stopped'
 
-    while True:
+	while True:
 		clock.tick(26)
 		#pygame.event.pump()
 		#pygame.event.wait()

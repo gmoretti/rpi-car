@@ -1,0 +1,42 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+    socket.on('connect', async function() {
+        forward = {left: 1, right: 1}
+        backwards = {left: -1, right: -1}
+        left = {left: 1, right: -1}
+        right = {left: -1, right: 1}
+        stop_motors = {left: 0, right: 0}
+
+        /* socket.emit('move_motors', {data: forward});
+        await new Promise(r => setTimeout(r, 2000));
+        socket.emit('move_motors', {data: backwards});
+        await new Promise(r => setTimeout(r, 2000));
+        socket.emit('move_motors', {data: stop_motors}); */
+
+
+        document.addEventListener('keydown', (event) => {
+            if (event.repeat) return;
+            const keyName = event.key;
+            if (keyName === 'w') {
+                console.log('going forward');
+                socket.emit('move_motors', {data: forward});
+            } else if (keyName === 's') {
+                console.log('going backwards');
+                socket.emit('move_motors', {data: backwards});
+            } else if (keyName === 'a') {
+                console.log('going left');
+                socket.emit('move_motors', {data: left});
+            } else if (keyName === 'd') {
+                console.log('going right');
+                socket.emit('move_motors', {data: right});
+            }
+        });
+
+        document.addEventListener('keyup', (event) => {
+            const keyName = event.key;
+            console.log('keyup event\n\n' + 'key: ' + keyName);
+            socket.emit('move_motors', {data: stop_motors});
+        });
+    });
+</script>
